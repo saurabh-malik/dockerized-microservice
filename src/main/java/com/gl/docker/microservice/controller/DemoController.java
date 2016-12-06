@@ -58,9 +58,9 @@ public class DemoController {
 	 * @return
 	 */
 	@ApiOperation(value = "Mocked API for test", notes = "Mocked API")
-	@RequestMapping(value = "/test", method = RequestMethod.GET, produces = {
+	@RequestMapping(value = "/getMessage", method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Map<String, String>> test(@RequestParam String message) {
+	public ResponseEntity<Map<String, String>> getMessage(@RequestParam String message) {
 		LOGGER.info("Controller processInit !");
 		Map<String, String> response = new HashMap<>();
 		response.put("message", "Hi this is mocked response for your message - " + message);
