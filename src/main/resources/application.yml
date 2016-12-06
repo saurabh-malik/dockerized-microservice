@@ -1,0 +1,44 @@
+info:
+  description: "Microservice for dockerization."
+  apiDocumentation: "TBD"
+
+server:
+  port: 8094
+
+spring:
+  data:
+    mongodb:
+      database: metadata_db
+
+cloud:
+    services:
+      registrationMethod: route
+
+microservice:
+    config:
+      swagger:
+        controllerPackage: com.gl.docker.microservice.controller
+        author: Saurabh Malik <saurabh.malik1@globallogic.com>
+        apiName: Dockerized Microservice
+        apiVersion: 1.0.0
+        apiDescription: API that could be dockerized
+
+security:
+  basic:
+    enabled: false
+
+endpoints:
+  health:
+    sensitive: false
+management:
+  security:
+    enabled: false
+  health:
+    rabbit:
+      enabled: false
+      
+---
+spring:
+  profiles: develop
+  name: dockerized-microservice
+
