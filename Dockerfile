@@ -1,10 +1,10 @@
-FROM ubuntu:15.04
+FROM openjdk:8-jdk
 MAINTAINER Saurabh Malik <saurabh.malik1@globallogic.com>
 
-RUN apt-get update && apt-get install -y curl && apt-get clean && rm -rf /var/lib/apt/lists
+# RUN apt-get update && apt-get install -y curl && apt-get clean && rm -rf /var/lib/apt/lists
 
 # unzip
-RUN apt-get update && apt-get install --yes unzip
+# RUN apt-get update && apt-get install --yes unzip
 
 # Gradle
 ENV GRADLE_VERSION 2.13
@@ -29,22 +29,17 @@ VOLUME ["/root/.gradle/caches", "/usr/bin/app"]
 WORKDIR /usr/bin/app
 ADD /. /usr/bin/app
 RUN ls
-# RUN ["gradle", "clean", "build"]
+RUN ["gradle", "clean", "build"]
 RUN ls
-RUN cd build/libs \ && ls
+# RUN cd build/libs \ && ls
+RUN cd /root/.gradle/caches \ && ls
+RUN cd /user/lib \ && ls
 
-VOLUME /tmp
+
+# VOLUME /tmp
 # RUN mv /usr/bin/app/build/libs/dockerized-microservice.jar app.jar
-ADD build/libs/dockerized-microservice.jar app.jar
+# ADD build/libs/dockerized-microservice.jar app.jar
 
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y  software-properties-common && \
-    add-apt-repository ppa:webupd8team/java -y && \
-    apt-get update && \
-    echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-    apt-get install -y oracle-java8-installer && \
-    apt-get clean
-    RUN /bin/bash -c 'touch /app.jar'
-EXPOSE 8094
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+# RUN /bin/bash -c 'touch /app.jar'
+# EXPOSE 8094
+# ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
