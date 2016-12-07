@@ -21,8 +21,6 @@ RUN cd /usr/lib \
 ENV GRADLE_HOME /usr/lib/gradle
 ENV PATH $PATH:$GRADLE_HOME/bin
 
-# Caches
-VOLUME ["/root/.gradle/caches", "/usr/bin/app"]
 
 # Default command is "/usr/bin/gradle -version" on /usr/bin/app dir
 # (ie. Mount project at /usr/bin/app "docker --rm -v /path/to/app:/usr/bin/app gradle <command>")
@@ -31,15 +29,19 @@ ADD /. /usr/bin/app
 RUN ls
 RUN ["gradle", "clean", "build"]
 RUN ls
+# Caches
+#VOLUME ["/root/.gradle/caches"]
+
+
+#VOLUME /tmp
+WORKDIR /tmp
 # RUN cd build/libs \ && ls
-RUN cd /root/.gradle/caches \ && ls
-RUN cd /user/lib \ && ls
+RUN mv /usr/bin/app/build/libs/app.jar /tmp/app.jar
+#ADD build/libs/app.jar app.jar
+RUN ls
+#ADD build/libs/app.jar tmp/app.jar
+#RUN ls
 
-
-# VOLUME /tmp
-# RUN mv /usr/bin/app/build/libs/dockerized-microservice.jar app.jar
-# ADD build/libs/dockerized-microservice.jar app.jar
-
-# RUN /bin/bash -c 'touch /app.jar'
-# EXPOSE 8094
-# ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+RUN /bin/bash -c 'touch /tmp/app.jar'
+EXPOSE 8094
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/tmp/app.jar"]
