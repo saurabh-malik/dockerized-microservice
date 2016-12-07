@@ -63,7 +63,7 @@ public class DemoController {
 	public ResponseEntity<Map<String, String>> getMessage(@RequestParam String message) {
 		LOGGER.info("Controller processInit !");
 		Map<String, String> response = new HashMap<>();
-		response.put("message", "Hi this is mocked response for your message - " + message);
+		response.put("response", "Hi this is mocked response for your message - " + message);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
