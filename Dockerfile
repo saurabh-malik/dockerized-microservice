@@ -36,7 +36,7 @@ RUN ls
 #VOLUME /tmp
 WORKDIR /tmp
 # RUN cd build/libs \ && ls
-RUN mv /usr/bin/app/build/libs/app.jar /tmp/app.jar
+RUN mv /usr/bin/app/build/libs/dockerized-microservice.jar /tmp/app.jar
 #ADD build/libs/app.jar app.jar
 RUN ls
 #ADD build/libs/app.jar tmp/app.jar
