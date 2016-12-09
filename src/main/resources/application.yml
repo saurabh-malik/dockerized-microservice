@@ -5,6 +5,13 @@ info:
 server:
   port: 8094
 
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://dockerized-eureka-server:8761/eureka/
+
 spring:
   data:
     mongodb:
@@ -39,6 +46,6 @@ management:
       
 ---
 spring:
-  profiles: develop
+  profiles: docker
   name: dockerized-microservice
 
