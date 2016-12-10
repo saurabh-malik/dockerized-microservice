@@ -46,6 +46,6 @@ management:
       
 ---
 spring:
-  profiles: docker
+  profiles: cloud
   name: dockerized-microservice
 
