@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @Validated
 @RestController
-@RequestMapping("/api/Demo")
+@RequestMapping("/api/v2/Demo")
 @Api("Demo Controller for dockerization")
 public class DemoController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DemoController.class);
